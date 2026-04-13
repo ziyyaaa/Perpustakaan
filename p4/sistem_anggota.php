@@ -11,8 +11,6 @@
 
 <?php
 require_once 'functions_anggota.php';
-
-// Data anggota (format baru)
 $anggota_list = [
     [
         "id" => "AGT-001",
@@ -66,20 +64,16 @@ $anggota_list = [
     ]
 ];
 
-// Statistik
 $total = hitung_total_anggota($anggota_list);
 $aktif = hitung_anggota_aktif($anggota_list);
 $rata = hitung_rata_rata_pinjaman($anggota_list);
 $teraktif = cari_anggota_teraktif($anggota_list);
 
-// Filter
 $anggota_aktif = filter_by_status($anggota_list, "Aktif");
 $anggota_nonaktif = filter_by_status($anggota_list, "Non-Aktif");
 
-// Sort
 $anggota_list = sort_by_nama($anggota_list);
 
-// Search
 $keyword = $_GET['search'] ?? "";
 if ($keyword != "") {
     $anggota_list = search_by_nama($anggota_list, $keyword);
@@ -89,7 +83,6 @@ if ($keyword != "") {
 <div class="container mt-5">
     <h1 class="mb-4"><i class="bi bi-people"></i> Sistem Anggota Perpustakaan</h1>
 
-    <!-- Dashboard -->
     <div class="row mb-4 text-center">
         <div class="col-md-4">
             <div class="card p-3 bg-primary text-white">
@@ -111,12 +104,10 @@ if ($keyword != "") {
         </div>
     </div>
 
-    <!-- Search -->
     <form method="GET" class="mb-3">
         <input type="text" name="search" class="form-control" placeholder="Cari nama anggota..." value="<?= $keyword ?>">
     </form>
 
-    <!-- Tabel Anggota -->
     <div class="card mb-4">
         <div class="card-header bg-primary text-white">
             <h5 class="mb-0">Daftar Anggota</h5>
@@ -155,7 +146,6 @@ if ($keyword != "") {
         </div>
     </div>
 
-    <!-- Anggota Teraktif -->
     <div class="card mb-4">
         <div class="card-header bg-success text-white">
             <h5 class="mb-0">Anggota Teraktif</h5>
@@ -167,7 +157,6 @@ if ($keyword != "") {
         </div>
     </div>
 
-    <!-- Aktif & Non Aktif -->
     <div class="row">
         <div class="col-md-6">
             <h5>Anggota Aktif</h5>
